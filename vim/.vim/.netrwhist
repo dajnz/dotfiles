@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/jnz/nixlearn'
+let g:netrw_dirhist_2='/media/jnz/WORKHDD/Projects/Webdev/learn/jquery_learn'
+let g:netrw_dirhist_3='/media/jnz/WORKHDD/Projects'
+let g:netrw_dirhist_4='/media/jnz/WORKHDD/Projects/Webdev'
+let g:netrw_dirhist_5='/media/jnz/WORKHDD/Projects/Webdev/learn'
+let g:netrw_dirhist_6='/media/jnz/WORKHDD/Projects/Webdev/learn/jquery_learn'

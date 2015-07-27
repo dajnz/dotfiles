@@ -1,0 +1,32 @@
+[user]
+	mane = jnz
+	email = vladi.ponomarev@gmail.com
+	name = Vladimir Ponomarev
+[core]
+	autocrlf = input
+	safecrlf = warn
+	editor = vim
+[color]
+	ui = true
+	diff = true
+	status = true
+	branch = true
+    interactive = true
+[alias]
+    i = init
+    cl = clone
+    a = add
+    c = commit
+    ca = commit -a
+    ch = checkout
+    b = branch
+    ba = branch -a
+    br = branch -r
+    s = status
+    pu = pull
+    ps = push
+    f = fetch
+    m = merge
+    re = rebase
+    rm = remote
+	lg = log --graph --all --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ad)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=local
