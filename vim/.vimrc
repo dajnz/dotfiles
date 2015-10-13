@@ -53,8 +53,9 @@ Plugin 'raimondi/delimitmate'
 Plugin 'tpope/vim-surround'
 " Подсветка и отступы для stylus файлов
 Plugin 'wavded/vim-stylus'
-" Подсветка и отступы для less файлов
+" Подсветка и отступы для less и scss файлов
 Plugin 'groenewege/vim-less'
+Plugin 'cakebaker/scss-syntax.vim'
 " Подсветка синтаксиса для jade
 Plugin 'digitaltoad/vim-jade'
 " <---------
