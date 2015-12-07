@@ -1,5 +1,5 @@
 "==================================
-"= Менеджер плагинов Vundle 
+"= Vundle settings 
 "==================================
 
 " be iMproved, required
@@ -19,54 +19,56 @@ endif
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle.vim'
 
-" добавлять новые плагины здесь 
+" Plugins goes here
 " ---------->
-" удобный просмотрщик файлов
+" useful file manager
 Plugin 'scrooloose/nerdtree'
-" очень удобная строка статуса и табов
+" cool status line
 Plugin 'bling/vim-airline'
-" строка статуса tmux аналогичная airline
+" cool status line for tmux
 Plugin 'edkolev/tmuxline.vim'
-" отличный ускоритель написания html и css
+" html and css writing accelerator
 Plugin 'mattn/emmet-vim'
-" удобная работа с git
+" working with git
 Plugin 'tpope/vim-fugitive'
-" получение событий о переходе фокуса ввода в окно vim для
-" автообновления файла, если он был изменен извне
+" plugin for catching focus events for vim
+" used to update opened file, if it was changed outside
 Plugin 'tmux-plugins/vim-tmux-focus-events'
-" крайне удобное перемещение по тексту
+" cool text navigation
 Plugin 'Lokaltog/vim-easymotion'
-" нечеткий поиск по файлам, буферам, тегам, недавним файлам
+" fuzzy search by files 
 Plugin 'kien/ctrlp.vim'
-" удобное комментирование/раскомментирование текста
+" fast commenting/uncommenting a source code
 Plugin 'tomtom/tcomment_vim'
-" удобное отображение отступов
+" comfortable indent visualisation
 Plugin 'Yggdroot/indentLine'
-" отступы для html и js
+" indents for html and js
 Plugin 'lukaszb/vim-web-indent'
-" удобный плагин для открытия недавних файлов, работы с сессиями
+" comfortable startup screen and session management
 Plugin 'mhinz/vim-startify'
-" удобный плагин для автоматического дополнения парных скобок, кавычек и т.п.
+" comfortable pair braces etc. autocomplete
 Plugin 'raimondi/delimitmate'
-" удобный плагин для окружения слов/строк скобками, кавычками, тегами, их
-" замены на другие или удаления уже имеющихся вокруг слова
+" plugin for management of text surrounding with any stuff
 Plugin 'tpope/vim-surround'
-" Подсветка и отступы для stylus файлов
+" stylus highlighting and indentation
 Plugin 'wavded/vim-stylus'
-" Подсветка и отступы для less и scss файлов
-Plugin 'groenewege/vim-less'
 Plugin 'cakebaker/scss-syntax.vim'
-" Подсветка синтаксиса для jade
+" less highlighting and indentation
+Plugin 'groenewege/vim-less'
+" jade highlighting
 Plugin 'digitaltoad/vim-jade'
+" toml syntax highlighting
+Plugin 'cespare/vim-toml'
+" rust lang syntax highlighting and file detection
+Plugin 'wting/rust.vim'
 " <---------
 
-" All of your Plugins must be added before the following line
 call vundle#end()            
 filetype plugin indent on   
 
 
 "==================================
-"= Цветовая тема и цвета
+"= Colors and color theme
 "==================================
 
 syntax enable
@@ -76,20 +78,20 @@ let g:rehash256 = 1
 
 
 "==================================
-"= Графический интерфейс
+"= GUI
 "==================================
 
 if has('gui_running') 
      set guioptions=gc 
      
     if has('win32') || has('win64')
-        " Задаем шрифт консоли
+        " console font
         set guifont=Consolas\ for\ Powerline\ FixedD:h11:cRUSSIAN
-        " Отображение кириллицы во внутренних сообщениях программы
+        " correct cyrillic in inner vim messages
         lan mes ru_RU.UTF-8
-        " решаем проблему с работоспособностью backspace
+        " backspace issue solution
         set backspace=indent,eol,start
-        " отключаем мышь в windows
+        " we don't need mouse
         set mouse=""
     else
         set guifont=Droid\ Sans\ Mono\ For\ Powerline
@@ -109,65 +111,66 @@ endif
 
 
 "==================================
-"= Общее поведение vim
+"= Common vim behavior
 "==================================
 
-" включить подсветку синтаксиса.
+" enabling syntax highlighting
 syntax on                               
-" перенос длинных строк по-умолчанию
+" wrapping for long lines by default
 set wrap                              
-" использовать режим красивого переноса длинных строк, часть длинной строки
-" выводится с учетом отступа этой строки
+" nice wrapping for long lines with respect of
+" starging indent
 set breakindent
-" переносить по словам, не разрывая их в произвольных местах
+" wrapping by whole words
 set linebreak
-" не создавать .bak файлы (по умолчанию <oldname>~)
+" we don't need *.bak files (default <oldname>~)
 set nobackup                              
-" не использовать своп-файлы (все держать в памяти)
+" keep all in ram, no swapping
 set noswapfile
-" прокрутка вправо/влево когда строка заежает за край и вы по ней ползаете
+" left/right screen scrolling when navigating
 set sidescroll=5                        
-" показывать символы > или < если есть, что слева/справа строки
+" hinting for previous and next strings with symbols > or < 
 set listchars+=precedes:<,extends:>     
 
-" игнорировать прописные/строчные при поиске
+" ignoring uppercase when searching
 set ignorecase                          
-" умное сравнивание с учетом регистра букв при поиске
+" smart case compare for search
 set smartcase 
-" при поиске перескакивать на найденный текст в процессе набора строки
+" jump to matched text while typing in search mode
 set incsearch                           
-" включаем подсветку при поиске
+" highlight matched words while searching
 set hlsearch
 
-" кол-во пробелов, которым символ табуляции отображается в тексте
+" number of spaces used for indentaion by Tab key pressing
 set tabstop=4
-" настройка ширины отступов при использовании >> и <<
+" indentation size (in spaces) for >> and << commands in command mode
 set shiftwidth=4
-" включение замены при вводе табуляций на пробелы
+" automatic replacement of tabs with spaces during typing
 set expandtab
 " добавка отступа в строке при нажатии Tab в начале строки (до первого непробельного символа)
 set smarttab
-" при добавлении новой строки, копирует отступ предыдущей строки 
+" keeping of an indent of previous line for pasted/inserted new line
 set autoindent                          
-" отображаение нумерации строк
+" show line numbers
 set number
 
-" подсветка парной скобки при нахождении курсора над скобкой
+" highlighting of pair bracket for a bracket under a cursor
 set showmatch
-" отображение незавершенных вводимых команд в строке статуса
+" show unfinished commands in bottom-right side of command line 
 set showcmd
 
-" отключение перерисовки при выполнении макросов, повышает производительность
-set lazyredraw
+" switching off of redrawing while macros execution
+" set lazyredraw
 
-" настройка кодировок vim по-умолчанию
+" default vim encodings
 set encoding=utf-8
 set termencoding=utf-8
 
-" Настройки кодировки и формата файлов
+" vim default file formats and encodings for files
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,cp1251
 
+" TODO: translate rest of strings
 " отображаем классную строку статуса по-умолчанию
 set laststatus=2
 
@@ -202,10 +205,10 @@ if has('multi_byte')
 endif
 
 "==================================
-"= Общие переназначения клавиш 
+"= Common keys overrides
 "==================================
 
-" установка удобного Leader
+" setting of comfortable (for me:) Leader key
 let mapleader = "\<Space>"
 " удобное сохранение файла
 nnoremap <Leader>q :w!<CR>
@@ -225,7 +228,7 @@ imap <S-Tab> <Esc><<i
 nnoremap o ox<BS>
 nnoremap O Ox<BS>
 
-" замена клавиши esc
+" ESC redefinition
 " imap ;; <ESC>
 
 " решение вопроса с командным режимом в русской рацкладке
@@ -242,7 +245,7 @@ nmap З P
 imap <C-х> <C-[>
 " imap жж <ESC>
 
-" переход к файлу под курсором
+" go to file under a cursor
 nnoremap gf gF
 
 " ********* NERDTree
@@ -250,7 +253,7 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>т :NERDTreeToggle<CR>
 
 " ********* CtlP
-" удобное управление для CtrlP
+" comfortable for me keys bindings for CtrlP plugin
 map <leader>c :CtrlP<CR>
 map <leader>v :CtrlPBuffer<CR>
 map <leader>b :CtrlPBufTag<CR>
@@ -279,13 +282,13 @@ map <Leader>р <Plug>(easymotion-linebackward)
 
 
 "==================================
-"= Настройки для плагинов 
+"= Plugin-specific settings
 "==================================
 
 " *** Vim-airline 
-" выбираем цветовую тему (badwolf, durant, hybrid)
+" activate color theme for airline (also not bad: badwolf, durant, hybrid)
 let g:airline_theme='hybrid'
-" включаем использование символов из спец шрифтов для airline
+" activate special symbols from airline font for airline UI
 if has('win32') || has('win64')
     let g:airline_symbols = {}
     
@@ -299,11 +302,11 @@ if has('win32') || has('win64')
 else    
     let g:airline_powerline_fonts=1
 endif
-" расширение для отображения табов
+" Tab showing plugin
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#tabline#buffer_idx_mode=0
-" расширение для отображения веток git (использует плагин fugitive)
+" git branch name visualisation (with helof of fugitive plugin)
 let g:airline#extensions#branch#enabled=1
 
 " *** Tmuxline
@@ -330,3 +333,4 @@ let g:startify_session_dir = '~/.vim/session'
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|build$\|node_modules$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+
