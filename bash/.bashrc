@@ -121,7 +121,16 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # tmux session settings
-alias tmux='tmux attach || tmux new'
+# alias tmux='tmux attach || tmux new'
+
+# git short commands
+alias gis='git status '
+alias gia='git add '
+alias gibr='git branch '
+alias gico='git commit'
+alias gidi='git diff'
+alias gich='git checkout '
+alias gil='git log --pretty=format:"%h %ad | %C(bold white)%s%C(reset)%C(green)%d%C(reset) [%an]" --graph --date=short'
 
 
 # ===================
@@ -142,4 +151,5 @@ fi
 # ===================
 # ПОЛЬЗОВАТЕЛЬСКИЕ НАСТРОЙКИ
 # ===================
-
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.cabal/bin:/opt/cabal/1.20/bin:/opt/ghc/7.10.3/bin:$PATH"

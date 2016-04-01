@@ -25,6 +25,8 @@ Plugin 'gmarik/vundle.vim'
 Plugin 'scrooloose/nerdtree'
 " cool status line
 Plugin 'bling/vim-airline'
+" themes for vim-airline
+Plugin 'vim-airline/vim-airline-themes'
 " cool status line for tmux
 Plugin 'edkolev/tmuxline.vim'
 " html and css writing accelerator
@@ -56,11 +58,19 @@ Plugin 'cakebaker/scss-syntax.vim'
 " less highlighting and indentation
 Plugin 'groenewege/vim-less'
 " jade highlighting
-Plugin 'digitaltoad/vim-jade'
+Plugin 'digitaltoad/vim-pug'
 " toml syntax highlighting
 Plugin 'cespare/vim-toml'
 " rust lang syntax highlighting and file detection
 Plugin 'wting/rust.vim'
+" fast real-time code-completion tool
+Plugin 'Valloric/YouCompleteMe'
+" source code snippets plugin
+Plugin 'SirVer/ultisnips'
+" snippets for ultisnips plugin
+Plugin 'honza/vim-snippets'
+" Vue components syntax highlighing
+Plugin 'posva/vim-vue'
 " <---------
 
 call vundle#end()            
@@ -116,6 +126,7 @@ endif
 
 " enabling syntax highlighting
 syntax on                               
+
 " wrapping for long lines by default
 set wrap                              
 " nice wrapping for long lines with respect of
@@ -200,9 +211,11 @@ if has('multi_byte')
     set fillchars=stl:\ ,stlnc:\ ,vert:│
     " Show ↪ at the beginning of wrapped lines
     if has("linebreak")
-        let &sbr = '>>> ' 
+        let &sbr = '>>>>>>>> ' 
     endif
 endif
+
+
 
 "==================================
 "= Common keys overrides
@@ -281,6 +294,12 @@ map <Leader>л <Plug>(easymotion-k)
 map <Leader>р <Plug>(easymotion-linebackward)
 
 
+" set up convinient key bindings for command line navigation
+cnoremap <C-K> <Up>
+cnoremap <C-J> <Down>
+cnoremap <C-L> <Right>
+cnoremap <C-H> <Left>
+
 "==================================
 "= Plugin-specific settings
 "==================================
@@ -330,7 +349,12 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 let g:startify_session_dir = '~/.vim/session'
 
 " *** Ctrl-p
+let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|build$\|node_modules$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
+" *** UltiSnips
+let g:UltiSnipsExpandTrigger="<c-d>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-l>"
