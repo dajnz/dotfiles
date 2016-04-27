@@ -40,6 +40,8 @@ Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'Lokaltog/vim-easymotion'
 " fuzzy search by files 
 Plugin 'kien/ctrlp.vim'
+" Multilangual syntax checker
+Plugin 'scrooloose/syntastic'
 " fast commenting/uncommenting a source code
 Plugin 'tomtom/tcomment_vim'
 " comfortable indent visualisation
@@ -71,6 +73,10 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Vue components syntax highlighing
 Plugin 'posva/vim-vue'
+" PHP completion plugin
+Plugin 'shawncplus/phpcomplete.vim'
+" PHP indentation plugin
+Plugin '2072/PHP-Indenting-for-VIm'
 " <---------
 
 call vundle#end()            
@@ -119,7 +125,6 @@ else
 endif
 
 
-
 "==================================
 "= Common vim behavior
 "==================================
@@ -134,7 +139,7 @@ set wrap
 set breakindent
 " wrapping by whole words
 set linebreak
-" we don't need *.bak files (default <oldname>~)
+" we don't need ---ak files (default <oldname>~)
 set nobackup                              
 " keep all in ram, no swapping
 set noswapfile
@@ -214,7 +219,6 @@ if has('multi_byte')
         let &sbr = '>>>>>>>> ' 
     endif
 endif
-
 
 
 "==================================
@@ -300,11 +304,29 @@ cnoremap <C-J> <Down>
 cnoremap <C-L> <Right>
 cnoremap <C-H> <Left>
 
+
+"==================================
+"= Syntax checker settings
+"==================================
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
+
+" --- PHP syntax checking options
+let g:syntastic_php_checkers=['phpcs', 'php']
+let g:syntastic_php_phpcs_exec='~/.composer/vendor/bin/phpcs'
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
+
+
 "==================================
 "= Plugin-specific settings
 "==================================
 
-" *** Vim-airline 
+" --- Vim-airline 
 " activate color theme for airline (also not bad: badwolf, durant, hybrid)
 let g:airline_theme='hybrid'
 " activate special symbols from airline font for airline UI
@@ -328,33 +350,33 @@ let g:airline#extensions#tabline#buffer_idx_mode=0
 " git branch name visualisation (with helof of fugitive plugin)
 let g:airline#extensions#branch#enabled=1
 
-" *** Tmuxline
+" --- Tmuxline
 let g:tmuxline_preset = 'full'
 
-" *** NerdTree
+" --- NerdTree
 
-" *** IndentLine
+" --- IndentLine
 let g:indentLine_faster=1
 let g:indentLine_char="¦"
 if has('win32') || has('win64')
     let g:indentLine_char="│"
 endif
 
-" *** EasyMotion
+" --- EasyMotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
-" *** Startify
+" --- Startify
 let g:startify_session_dir = '~/.vim/session'
 
-" *** Ctrl-p
+" --- Ctrl-p
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|build$\|node_modules$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
-" *** UltiSnips
+" --- UltiSnips
 let g:UltiSnipsExpandTrigger="<c-d>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-l>"
