@@ -72,11 +72,16 @@ Plugin 'SirVer/ultisnips'
 " snippets for ultisnips plugin
 Plugin 'honza/vim-snippets'
 " Vue components syntax highlighing
-Plugin 'posva/vim-vue'
+" Plugin 'posva/vim-vue'
+Plugin 'darthmall/vim-vue'
 " PHP completion plugin
 Plugin 'shawncplus/phpcomplete.vim'
 " PHP indentation plugin
 Plugin '2072/PHP-Indenting-for-VIm'
+" Vim debugging plugin
+Plugin 'joonty/vdebug'
+" Convenient sidebar with all tags for current file indexed by ctags
+Plugin 'majutsushi/tagbar'
 " <---------
 
 call vundle#end()            
@@ -139,8 +144,12 @@ set wrap
 set breakindent
 " wrapping by whole words
 set linebreak
-" we don't need ---ak files (default <oldname>~)
+" we don't need backup files (default <oldname>~)
 set nobackup                              
+" save temporary backup of a file on writing not in currend directory,
+" but into this one
+" this is useful with gulp watchers
+set backupdir=/tmp//
 " keep all in ram, no swapping
 set noswapfile
 " left/right screen scrolling when navigating
@@ -279,6 +288,9 @@ map <leader>с :CtrlP<CR>
 map <leader>м :CtrlPBuffer<CR>
 map <leader>и :CtrlPBufTag<CR>
 
+" ********* Tagbar
+nmap <leader>t :TagbarToggle<CR>
+
 " ********* EasyMotion
 " классное перемещение в любую точку по одному или двум символам
 nmap <Leader>f <Plug>(easymotion-s)
@@ -314,6 +326,12 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '!!'
+let g:syntastic_warning_symbol = "⚠"
+let g:syntastic_style_warning_symbol = '??'
+
+" --- JS syntax checking options
 let g:syntastic_javascript_checkers = ['eslint']
 
 " --- PHP syntax checking options
@@ -372,6 +390,7 @@ let g:startify_session_dir = '~/.vim/session'
 
 " --- Ctrl-p
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|build$\|node_modules$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
@@ -380,3 +399,25 @@ let g:ctrlp_custom_ignore = {
 let g:UltiSnipsExpandTrigger="<c-d>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-l>"
+
+" --- Vdebug 
+let g:vdebug_options= {
+\    "port" : 9013,
+\    "server" : '',
+\    "timeout" : 20,
+\    "on_close" : 'detach',
+\    "break_on_open" : 0,
+\    "ide_key" : 'PHPSTORM',
+\    "path_maps" : {},
+\    "debug_window_level" : 0,
+\    "debug_file_level" : 0,
+\    "debug_file" : "",
+\    "continuous_mode" : 1,
+\    "watch_window_style" : 'expanded',
+\    "marker_default" : '⬦',
+\    "marker_closed_tree" : '▸',
+\    "marker_open_tree" : '▾'
+\}
+
+" --- Tagbar
+
